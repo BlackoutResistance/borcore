@@ -1,5 +1,5 @@
-name: Main
-main: com.borcore.Main
+name: BORCore
+main: com.borcore.BORCore
 version: 1.0
 author: [Tre, Desle]
 commands:
