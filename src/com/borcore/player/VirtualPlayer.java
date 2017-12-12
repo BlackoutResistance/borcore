@@ -14,7 +14,7 @@ public class VirtualPlayer {
     private VirtualPlayer(UUID uuid) {
         this.uuid = uuid;
         settings.useHeader(uuid.toString());
-        settings.setName(getPlayer().getName());
+        settings.setFaction("test-faction");
         settings.save();
     }
 

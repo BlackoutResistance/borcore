@@ -9,8 +9,7 @@ public class PlayerJoin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        VirtualPlayer vp = VirtualPlayer.load(event.getPlayer().getUniqueId());
-        event.getPlayer().sendMessage(vp.getPlayer().getName());
+        VirtualPlayer.load(event.getPlayer().getUniqueId());
     }
 
 }

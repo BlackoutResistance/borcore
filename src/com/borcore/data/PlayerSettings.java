@@ -1,33 +1,24 @@
 package com.borcore.data;
 
-import com.borcore.BORCore;
-
-import java.io.File;
-import java.util.UUID;
-
 public class PlayerSettings extends Settings {
 
-    private final String uuidId = "uuid";
     private final String nameId = "name";
+    private final String factionId = "faction";
 
-    private SettingsFile settingsFile;
 
     public PlayerSettings() {
-        super("player");
-
-        settingsFile = new SettingsFile(BORCore.getPluginFolder() + File.separator + "player-data.yml");
-        useSettingsFile(settingsFile);
+        super("player", ConfigFiles.PLAYER.getFile());
     }
 
-    public void setUUID(UUID uuid) {
-        set(uuidId, uuid);
+    public void setFaction(String factionName) {
+        set(factionId, factionName);
     }
 
-    public UUID getUUID() {
-        return get(uuidId, UUID.class);
+    public void getFaction() {
+        get(factionId, String.class);
     }
 
-    public void setName(String name) {
+    public void setCustomName(String name) {
         set(nameId, name);
     }
 

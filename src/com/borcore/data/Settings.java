@@ -1,41 +1,45 @@
 package com.borcore.data;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.File;
+import java.io.IOException;
 
 public abstract class Settings {
 
-    private String path;
-    private Map<String, Object> settingsMap = new HashMap<>();
-    private SettingsFile settingsFile;
+    private String path, header;
+    private File file;
+    private YamlConfiguration configuration;
 
-    Settings(String path) {
+    Settings(String path, File file) {
         this.path = path;
+        this.file = file;
+
+        configuration = YamlConfiguration.loadConfiguration(file);
     }
 
     public void useHeader(String header) {
-        this.path = path + "." + header;
-    }
-
-    void useSettingsFile(SettingsFile settingsFile) {
-        this.settingsFile = settingsFile;
+        this.path = path + "." + (this.header = header);
     }
 
     public void save() {
-        settingsMap.keySet().forEach(a -> settingsFile.set(a, settingsMap.get(a)));
-        settingsFile.save();
+        try {
+            configuration.save(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     void set(String name, Object defaultValue) {
-        settingsMap.put(path + "." + name, defaultValue);
+        configuration.set(path + "." + name, defaultValue);
     }
 
     <T> T get(String name, Class<T> clazz) {
-        return clazz.cast(settingsMap.get(path + "." + name));
+        return clazz.cast(configuration.get(path + "." + name));
     }
 
     void remove(String name) {
-        settingsMap.remove(path + "." + name);
+        configuration.set(path + "." + name, null);
     }
 
 }

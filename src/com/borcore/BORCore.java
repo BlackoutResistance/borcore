@@ -9,14 +9,11 @@ public class BORCore extends JavaPlugin {
 
     private static JavaPlugin plugin;
     private static File dataFolder;
-    private static File playerFolder;
 
     @Override
     public void onEnable() {
         plugin = this;
         dataFolder = getDataFolder();
-        playerFolder = new File(dataFolder + File.separator + "players");
-        playerFolder.mkdirs();
 
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 
@@ -34,10 +31,6 @@ public class BORCore extends JavaPlugin {
 
     public static File getPluginFolder() {
         return dataFolder;
-    }
-
-    public static File getPlayerFolder() {
-        return playerFolder;
     }
 
 }
