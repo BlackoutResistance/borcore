@@ -1,5 +1,7 @@
 package com.borcore;
 
+import com.borcore.command.List;
+import com.borcore.command.Main;
 import com.borcore.event.PlayerJoin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +16,9 @@ public class BORCore extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         dataFolder = getDataFolder();
+
+        getCommand("borcore").setExecutor(new Main());
+        getCommand("list").setExecutor(new List());
 
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 

@@ -4,3 +4,5 @@ version: 1.0
 author: [Tre, Desle]
 commands:
   borcore:
+  list:
+    description: List all online players.
