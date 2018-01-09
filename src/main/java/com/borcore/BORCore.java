@@ -2,6 +2,7 @@ package com.borcore;
 
 import com.borcore.command.List;
 import com.borcore.command.Main;
+import com.borcore.command.Teleport;
 import com.borcore.event.PlayerJoin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,11 +15,17 @@ public class BORCore extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
         plugin = this;
         dataFolder = getDataFolder();
 
         getCommand("borcore").setExecutor(new Main());
         getCommand("list").setExecutor(new List());
+
+        Teleport teleport = new Teleport();
+        getCommand("tpa").setExecutor(teleport);
+        getCommand("tpaccept").setExecutor(teleport);
+        getCommand("tpdeny").setExecutor(teleport);
 
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 

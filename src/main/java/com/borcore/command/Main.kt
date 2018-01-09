@@ -10,7 +10,7 @@ class Main: CommandExecutor {
     override fun onCommand(sender: CommandSender?, cmd: Command?, label: String?, args: Array<out String>?): Boolean {
 
         val player: Player = sender as Player
-        player.sendMessage("Called main command.")
+        //TODO not implemented
 
         return true
     }

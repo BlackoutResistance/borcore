@@ -11,14 +11,15 @@ class List: CommandExecutor{
 
     override fun onCommand(sender: CommandSender, cmd: Command, label: String, args: Array<String>): Boolean {
         val player: Player = sender as Player
-        showOnlinePlayers(player)
+        player.showOnlinePlayers()
         return true
     }
 
-    private fun showOnlinePlayers(player: Player) {
-        player.sendMessage("${ChatColor.YELLOW}Online players:")
-        val nameList = Bukkit.getOnlinePlayers().map(Player::getDisplayName)
-        player.sendMessage(nameList.joinToString(", "))
+    private fun Player.showOnlinePlayers() {
+        sendMessage(Bukkit.getOnlinePlayers()
+                .joinToString(", ",
+                        "${ChatColor.YELLOW}Online players:",
+                        transform = Player::getDisplayName))
     }
 
 }

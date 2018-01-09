@@ -6,3 +6,6 @@ commands:
   borcore:
   list:
     description: List all online players.
+  tpa:
+  tpaccept:
+  tpdeny:
